@@ -1,0 +1,154 @@
+### Register new provider
+POST http://localhost:8083/api/providers/register
+Content-Type: application/json
+
+{
+  "businessName": "Elite Events & Planning",
+  "ownerName": "Jane Wilson",
+  "email": "jane.wilson@eliteevents.com",
+  "password": "secure123",
+  "phoneNumber": "1234567890",
+  "address": "123 Business Ave, Suite 500",
+  "description": "Premium event planning services specializing in luxury weddings and corporate events",
+  "serviceTypes": ["WEDDING", "CORPORATE", "BIRTHDAY", "DECORATION"],
+  "basePrice": 2000.00
+}
+
+### Login provider
+POST http://localhost:8083/api/providers/login
+Content-Type: application/json
+
+{
+    "email": "john@elegantevents.com",
+    "password": "securePass123!"
+}
+
+### Get provider by ID
+GET http://localhost:8083/api/providers/2
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzM4NCJ9.eyJzdWIiOiJqb2huQGVsZWdhbnRldmVudHMuY29tIiwiaWF0IjoxNzQ0Mjg5MTk4LCJleHAiOjE3NDQzNzU1OTh9.wKstEPr4v64DS1higjAnAK9TKoHJ0b7LJYxFiRWdnjymU01Qc6PflkBggFn6dLAw
+
+### Get providers by service type
+GET http://localhost:8083/api/providers/service-type/WEDDING
+Content-Type: application/json
+
+### Update provider profile
+PUT http://localhost:8083/api/providers/1
+Content-Type: application/json
+
+{
+  "businessName": "Elite Events & Planning",
+  "ownerName": "Jane Wilson",
+  "email": "jane@eliteevents.com",
+  "password": "secure123",
+  "phoneNumber": "1234567890",
+  "address": "123 Business Ave, Suite 500",
+  "description": "Premium event planning services specializing in luxury weddings and corporate events",
+  "serviceTypes": ["WEDDING", "CORPORATE", "BIRTHDAY", "DECORATION"],
+  "basePrice": 2000.00
+}
+
+### Get all providers
+GET http://localhost:8083/api/providers
+Content-Type: application/json
+
+### Add Monday availability
+POST http://localhost:8083/api/providers/2/availability
+Content-Type: application/json
+
+{
+  "dayOfWeek": "MONDAY",
+  "startTime": "09:00:00",
+  "endTime": "17:00:00"
+}
+
+### Add Tuesday availability
+POST http://localhost:8083/api/providers/2/availability
+Content-Type: application/json
+
+{
+  "dayOfWeek": "TUESDAY",
+  "startTime": "09:00:00",
+  "endTime": "17:00:00"
+}
+
+### Add Wednesday availability
+POST http://localhost:8083/api/providers/2/availability
+Content-Type: application/json
+
+{
+  "dayOfWeek": "WEDNESDAY",
+  "startTime": "09:00:00",
+  "endTime": "17:00:00"
+}
+
+### Add Thursday availability
+POST http://localhost:8083/api/providers/2/availability
+Content-Type: application/json
+
+{
+  "dayOfWeek": "THURSDAY",
+  "startTime": "09:00:00",
+  "endTime": "17:00:00"
+}
+
+### Add Friday availability
+POST http://localhost:8083/api/providers/2/availability
+Content-Type: application/json
+
+{
+  "dayOfWeek": "FRIDAY",
+  "startTime": "09:00:00",
+  "endTime": "17:00:00"
+}
+
+### Verify provider
+PUT http://localhost:8083/api/providers/2/verify?verified=true
+Content-Type: application/json
+
+### Search providers by service type
+GET http://localhost:8083/api/providers/service-type/WEDDING
+Content-Type: application/json
+
+### Get all verified providers
+GET http://localhost:8083/api/providers/verified
+Content-Type: application/json
+
+### Add rating
+POST http://localhost:8083/api/providers/2/rating?rating=5
+Content-Type: application/json
+
+### Update provider details
+PUT http://localhost:8083/api/providers/2
+Content-Type: application/json
+
+{
+  "businessName": "Elite Events & Planning",
+  "ownerName": "Jane Wilson",
+  "email": "jane.wilson@eliteevents.com",
+  "password": "secure123",
+  "phoneNumber": "1234567890",
+  "address": "123 Business Ave, Suite 500",
+  "description": "Premium event planning services specializing in luxury weddings and corporate events",
+  "serviceTypes": ["WEDDING", "CORPORATE", "BIRTHDAY", "DECORATION"],
+  "basePrice": 2000.00,
+  "serviceArea": "Greater New York Area",
+  "businessHours": "Monday-Friday: 9:00 AM - 5:00 PM"
+}
+
+### Deactivate provider
+PUT http://localhost:8083/api/providers/2/status?active=false
+Content-Type: application/json
+
+### Search providers by minimum rating
+GET http://localhost:8083/api/providers/rating?minRating=4.5
+Content-Type: application/json
+
+### Get all providers
+GET http://localhost:8083/api/providers
+Content-Type: application/json
+
+### Delete provider
+DELETE http://localhost:8083/api/providers/2
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzM4NCJ9.eyJzdWIiOiJqb2huQGVsZWdhbnRldmVudHMuY29tIiwiaWF0IjoxNzQ0Mjg5MTk4LCJleHAiOjE3NDQzNzU1OTh9.wKstEPr4v64DS1higjAnAK9TKoHJ0b7LJYxFiRWdnjymU01Qc6PflkBggFn6dLAw 

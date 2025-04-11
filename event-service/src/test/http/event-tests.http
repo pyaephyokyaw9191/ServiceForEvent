@@ -1,0 +1,58 @@
+### Create new event
+POST http://localhost:8082/api/events
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzM4NCJ9.eyJzdWIiOiJ0ZXN0MkBleGFtcGxlLmNvbSIsImlhdCI6MTc0NDI4OTE5OCwiZXhwIjoxNzQ0Mzc1NTk4fQ.wKstEPr4v64DS1higjAnAK9TKoHJ0b7LJYxFiRWdnjymU01Qc6PflkBggFn6dLAw
+X-User-ID: 2
+
+{
+    "name": "Summer Wedding",
+    "description": "A beautiful summer wedding celebration",
+    "eventDate": "2025-07-15T15:00:00",
+    "eventType": "WEDDING",
+    "location": "Crystal Garden Venue",
+    "expectedGuests": 100,
+    "budget": 15000.00,
+    "requiredServiceIds": []
+}
+
+### Get event by ID
+GET http://localhost:8082/api/events/1
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzM4NCJ9.eyJzdWIiOiJ0ZXN0MkBleGFtcGxlLmNvbSIsImlhdCI6MTc0NDI4OTE5OCwiZXhwIjoxNzQ0Mzc1NTk4fQ.wKstEPr4v64DS1higjAnAK9TKoHJ0b7LJYxFiRWdnjymU01Qc6PflkBggFn6dLAw
+X-User-ID: 2
+
+### Get user's events
+GET http://localhost:8082/api/events/user
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzM4NCJ9.eyJzdWIiOiJ0ZXN0MkBleGFtcGxlLmNvbSIsImlhdCI6MTc0NDI4OTE5OCwiZXhwIjoxNzQ0Mzc1NTk4fQ.wKstEPr4v64DS1higjAnAK9TKoHJ0b7LJYxFiRWdnjymU01Qc6PflkBggFn6dLAw
+X-User-ID: 2
+
+### Get events by type
+GET http://localhost:8082/api/events/type/WEDDING
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzM4NCJ9.eyJzdWIiOiJ0ZXN0MkBleGFtcGxlLmNvbSIsImlhdCI6MTc0NDI4OTE5OCwiZXhwIjoxNzQ0Mzc1NTk4fQ.wKstEPr4v64DS1higjAnAK9TKoHJ0b7LJYxFiRWdnjymU01Qc6PflkBggFn6dLAw
+X-User-ID: 2
+
+### Update event
+PUT http://localhost:8082/api/events/1
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzM4NCJ9.eyJzdWIiOiJ0ZXN0MkBleGFtcGxlLmNvbSIsImlhdCI6MTc0NDI4OTE5OCwiZXhwIjoxNzQ0Mzc1NTk4fQ.wKstEPr4v64DS1higjAnAK9TKoHJ0b7LJYxFiRWdnjymU01Qc6PflkBggFn6dLAw
+X-User-ID: 2
+
+{
+    "name": "Summer Wedding Updated",
+    "description": "A beautiful summer wedding celebration with updated details",
+    "eventDate": "2025-07-15T16:00:00",
+    "eventType": "WEDDING",
+    "location": "Crystal Garden Venue & Spa",
+    "expectedGuests": 120,
+    "budget": 18000.00,
+    "requiredServiceIds": [],
+    "userId": 2
+}
+
+### Delete event
+DELETE http://localhost:8082/api/events/1
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzM4NCJ9.eyJzdWIiOiJ0ZXN0MkBleGFtcGxlLmNvbSIsImlhdCI6MTc0NDI4OTE5OCwiZXhwIjoxNzQ0Mzc1NTk4fQ.wKstEPr4v64DS1higjAnAK9TKoHJ0b7LJYxFiRWdnjymU01Qc6PflkBggFn6dLAw
+X-User-ID: 2 

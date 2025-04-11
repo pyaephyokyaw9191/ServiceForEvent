@@ -1,0 +1,40 @@
+HELP.md
+target/
+!.mvn/wrapper/maven-wrapper.jar
+!**/src/main/**/target/
+!**/src/test/**/target/
+
+### STS ###
+.apt_generated
+.classpath
+.factorypath
+.project
+.settings
+.springBeans
+.sts4-cache
+
+### IntelliJ IDEA ###
+.idea
+*.iws
+*.iml
+*.ipr
+
+### VS Code ###
+.vscode/
+
+### H2 Database ###
+*.db
+data/
+
+### Logs ###
+*.log
+logs/
+
+### Maven ###
+.mvn/
+mvnw
+mvnw.cmd
+
+### OS specific ###
+.DS_Store
+Thumbs.db 

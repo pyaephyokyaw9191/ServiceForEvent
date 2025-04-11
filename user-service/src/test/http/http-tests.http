@@ -1,0 +1,44 @@
+### Register a new user
+POST http://localhost:8081/api/auth/register
+Content-Type: application/json
+
+{
+  "firstName": "Test",
+  "lastName": "User",
+  "email": "test2@example.com",
+  "password": "password123",
+  "phoneNumber": "1234567890",
+  "address": "Test Address"
+}
+
+### Login
+POST http://localhost:8081/api/auth/login
+Content-Type: application/json
+
+{
+  "email": "test2@example.com",
+  "password": "password123"
+}
+
+### Get user by ID (Replace the token with the one received from login)
+GET http://localhost:8081/api/users/2
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzM4NCJ9.eyJzdWIiOiJ0ZXN0MkBleGFtcGxlLmNvbSIsImlhdCI6MTc0NDI4OTE5OCwiZXhwIjoxNzQ0Mzc1NTk4fQ.wKstEPr4v64DS1higjAnAK9TKoHJ0b7LJYxFiRWdnjymU01Qc6PflkBggFn6dLAw
+
+### Get current user
+GET http://localhost:8081/api/users/me?email=test2@example.com
+Content-Type: application/json
+Authorization: Bearer your-jwt-token-here
+
+### Update user
+PUT http://localhost:8081/api/users/2
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzM4NCJ9.eyJzdWIiOiJ0ZXN0MkBleGFtcGxlLmNvbSIsImlhdCI6MTc0NDI4OTE5OCwiZXhwIjoxNzQ0Mzc1NTk4fQ.wKstEPr4v64DS1higjAnAK9TKoHJ0b7LJYxFiRWdnjymU01Qc6PflkBggFn6dLAw
+
+{
+  "firstName": "Updated",
+  "lastName": "Name",
+  "email": "test@example.com",
+  "phoneNumber": "9876543210",
+  "address": "Updated Address"
+}

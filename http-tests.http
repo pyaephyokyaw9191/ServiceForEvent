@@ -1,0 +1,191 @@
+### ==================== Database Cleanup ==================== ###
+
+### 1. Clear All Databases
+### Clear Booking Service Database
+DELETE http://localhost:8084/api/bookings/all
+Content-Type: application/json
+
+### Clear Event Service Database
+DELETE http://localhost:8082/api/events/all
+Content-Type: application/json
+
+### Clear Provider Service Database
+DELETE http://localhost:8083/api/providers/all
+Content-Type: application/json
+
+### Clear User Service Database
+DELETE http://localhost:8081/api/users/all
+Content-Type: application/json
+
+### ==================== User Service Tests (8081) ==================== ###
+
+### 1. Register User (Alice)
+POST http://localhost:8081/api/users/register
+Content-Type: application/json
+
+{
+  "firstName": "Alice",
+  "lastName": "Johnson",
+  "email": "alice.johnson@example.com",
+  "password": "password123",
+  "phoneNumber": "9876543210",
+  "address": "456 Oak Street"
+}
+
+### 2. Login User (Save the token for later use)
+POST http://localhost:8081/api/users/login
+Content-Type: application/json
+
+{
+  "email": "alice.johnson@example.com",
+  "password": "password123"
+}
+
+### 3. Get User Profile (Use the token from login)
+GET http://localhost:8081/api/users/1
+Authorization: Bearer {{auth_token}}
+
+### ==================== Provider Service Tests (8083) ==================== ###
+
+### 1. Register Provider
+POST http://localhost:8083/api/providers/register
+Content-Type: application/json
+
+{
+  "businessName": "Stellar Events & Planning",
+  "ownerName": "Sarah Parker",
+  "email": "sarah.parker@stellarevents.com",
+  "password": "secure123",
+  "phoneNumber": "5557891234",
+  "address": "789 Business Blvd, Suite 300",
+  "description": "Luxury event planning and coordination services",
+  "serviceTypes": ["WEDDING", "CORPORATE", "BIRTHDAY", "DECORATION"],
+  "basePrice": 2500.00
+}
+
+### 2. Get Provider Details
+GET http://localhost:8083/api/providers/1
+
+### 3. Add Provider Availability (Monday)
+POST http://localhost:8083/api/providers/1/availability
+Content-Type: application/json
+
+{
+  "dayOfWeek": "MONDAY",
+  "startTime": "09:00:00",
+  "endTime": "17:00:00"
+}
+
+### 4. Add Provider Availability (Tuesday)
+POST http://localhost:8083/api/providers/1/availability
+Content-Type: application/json
+
+{
+  "dayOfWeek": "TUESDAY",
+  "startTime": "09:00:00",
+  "endTime": "17:00:00"
+}
+
+### 5. Verify Provider
+PUT http://localhost:8083/api/providers/1/verify?verified=true
+
+### 6. Get All Providers
+GET http://localhost:8083/api/providers
+
+### 7. Get Providers by Service Type
+GET http://localhost:8083/api/providers/service-type/CORPORATE
+
+### 8. Get Verified Providers
+GET http://localhost:8083/api/providers/verified
+
+### ==================== Event Service Tests (8082) ==================== ###
+
+### 1. Create Event
+POST http://localhost:8082/api/events
+Content-Type: application/json
+X-User-ID: 1
+
+{
+  "name": "Tech Leadership Summit 2024",
+  "description": "Annual Technology Leadership Conference with industry experts",
+  "eventDate": "2024-09-16T10:00:00",
+  "eventType": "CORPORATE",
+  "location": "Stellar Convention Center",
+  "expectedGuests": 100,
+  "budget": 5000.00,
+  "requiredServiceIds": []
+}
+
+### 2. Get Event by ID
+GET http://localhost:8082/api/events/1
+
+### 3. Get User's Events
+GET http://localhost:8082/api/events/user
+X-User-ID: 1
+
+### 4. Get Events by Type
+GET http://localhost:8082/api/events/type/CORPORATE
+
+### 5. Update Event
+PUT http://localhost:8082/api/events/1
+Content-Type: application/json
+X-User-ID: 1
+
+{
+  "name": "Updated Tech Summit 2024",
+  "description": "Updated: Annual Technology Leadership Summit",
+  "eventDate": "2024-09-16T10:00:00",
+  "eventType": "CORPORATE",
+  "location": "Stellar Convention Center",
+  "expectedGuests": 150,
+  "budget": 7500.00,
+  "requiredServiceIds": []
+}
+
+### ==================== Booking Service Tests (8084) ==================== ###
+
+### 1. Create Booking
+POST http://localhost:8084/api/bookings
+Content-Type: application/json
+X-User-ID: 1
+
+{
+  "providerId": 1,
+  "eventId": 1,
+  "serviceDate": "2024-09-16T10:00:00",
+  "serviceType": "CORPORATE",
+  "amount": 5000.00,
+  "notes": "Tech Leadership Summit 2024 - Full Day Event"
+}
+
+### 2. Get Booking by ID
+GET http://localhost:8084/api/bookings/1
+
+### 3. Get User's Bookings
+GET http://localhost:8084/api/bookings/user
+X-User-ID: 1
+
+### 4. Get Provider's Bookings
+GET http://localhost:8084/api/bookings/provider/1
+
+### 5. Check Provider Availability
+GET http://localhost:8084/api/bookings/provider/1/availability?serviceDate=2024-09-16T10:00:00
+
+### 6. Update Booking Status Flow
+### 6.1. Confirm Booking
+PUT http://localhost:8084/api/bookings/1/confirm
+
+
+### Update Payment Status
+PUT http://localhost:8084/api/bookings/1/payment?isPaid=true
+Content-Type: application/json
+
+### 6.3. Complete Booking
+PUT http://localhost:8084/api/bookings/1/complete
+
+### Optional: Cancel Booking (if needed)
+# PUT http://localhost:8084/api/bookings/1/cancel?reason=Schedule conflict
+
+### Optional: Reject Booking (if needed)
+# PUT http://localhost:8084/api/bookings/1/reject?reason=Provider unavailable
+

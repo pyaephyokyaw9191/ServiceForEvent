@@ -1,0 +1,64 @@
+### Register User
+POST http://localhost:8081/api/users/register
+Content-Type: application/json
+
+{
+  "firstName": "Test",
+  "lastName": "User",
+  "email": "test@example.com",
+  "password": "password123",
+  "phoneNumber": "1234567890"
+}
+
+### Login User
+POST http://localhost:8081/api/users/login
+Content-Type: application/json
+
+{
+  "email": "test@example.com",
+  "password": "password123"
+}
+
+### Get Providers
+GET http://localhost:8083/api/providers
+Content-Type: application/json
+
+### Create Event
+POST http://localhost:8082/api/events
+Content-Type: application/json
+Authorization: Bearer {{auth_token}}
+
+{
+  "name": "Test Event",
+  "description": "Test event description",
+  "eventDate": "2024-12-31T18:00:00",
+  "eventType": "CONFERENCE",
+  "location": "Test Location",
+  "expectedGuests": 100,
+  "budget": 5000.00
+}
+
+### Get User Events
+GET http://localhost:8082/api/events/user
+Content-Type: application/json
+Authorization: Bearer {{auth_token}}
+
+### Create Booking
+POST http://localhost:8084/api/bookings
+Content-Type: application/json
+Authorization: Bearer {{auth_token}}
+
+{
+  "userId": 1,
+  "providerId": 1,
+  "eventId": 1,
+  "serviceDate": "2024-12-31T18:00:00",
+  "serviceType": "CATERING",
+  "amount": 1000.00,
+  "notes": "Test booking"
+}
+
+### Get User Bookings
+GET http://localhost:8084/api/bookings/user
+Content-Type: application/json
+Authorization: Bearer {{auth_token}} 
